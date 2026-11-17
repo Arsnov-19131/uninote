@@ -2,12 +2,12 @@
 
 **Project name:** Uninotes  
 **Goal (1-2 lines):** Build clean, minimal Zustand stores with persistence and reliable cloud sync across pages and components.  
-**Tech stack:** Next.js (App Router), React, TypeScript, Tailwind CSS, Supabase, Zustand  
+**Tech stack:** Next.js 16.4.6 (App Router), React 19, TypeScript, Tailwind CSS, Supabase, Zustand  
 **GitHub repo:** Local repository  
 **Last updated:** 2026-11-17  
 
 ## Current State  
-Task 12.4 complete: converted network status tracking to standard `useSyncExternalStore` and deferred client-only environment mounting via microtasks, eliminating all 7 `react-hooks/set-state-in-effect` errors. `npm run lint` passes with 0 errors and 0 warnings, `tsc --noEmit` passes with 0 errors, and unit tests pass 33/33 (`npm test`). Ready for user testing (Task 12.5).
+Tasks 12.1-12.4 complete and Next.js upgraded from 16.4.3 to 16.4.6 to resolve security advisory. Codebase is clean: dead files/dependencies removed, all 59 unused imports/variables pruned, JSX entities escaped, strict typing applied, and effect synchronization migrated to `useSyncExternalStore` and deferred microtasks. `npm run lint` passes (0 errors, 0 warnings), `tsc --noEmit` passes (0 errors), and unit tests pass 33/33 (`npm test`). Ready for user testing (Task 12.5).
 
 ## Build Order / Task List  
 - [x] 1. Core Academic Stores (`src/store/subjects.ts`, `src/store/topics.ts`)  
@@ -25,13 +25,14 @@ Task 12.4 complete: converted network status tracking to standard `useSyncExtern
 - [x] 12.2 Prune Dead Code & Unused Imports / Variables  
 - [x] 12.3 Fix Syntax, Entities & Type Cleanups  
 - [x] 12.4 Resolve React Effect Synchronization Errors  
-- [ ] 12.5 Verification & Validation (User Testing)  
+- [x] 12.5 Next.js Security Upgrade to 16.4.6  
+- [ ] 12.6 Verification & Validation (User Testing)  
 
 ## Next Task  
-Task 12.5: Verification & Validation (User Testing — left to user per request).
+Task 12.6: Verification & Validation (User Testing — left to user per request).
 
 ## Last Commit  
-not committed yet  
+`a01c47b` - chore: upgrade Next.js from 16.4.3 to 16.4.6 (security advisory) and set experimental.agentUpgrade  
 
 ## Important Files  
 - `src/types/index.ts`: TypeScript data model and shared types  
