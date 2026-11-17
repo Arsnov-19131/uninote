@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { PlannerTask, TaskStatus, TaskPriority, TaskType } from "@/types";
+import type { PlannerTask, TaskStatus } from "@/types";
 import { generateId, now } from "@/lib/utils";
 import { dayKey, moveToDay } from "@/lib/calendar";
 

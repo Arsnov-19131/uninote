@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { AppNotification, NotificationStatus } from "@/types";
+import type { AppNotification } from "@/types";
 import { generateId, now } from "@/lib/utils";
 
 interface NotificationStore {

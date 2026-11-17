@@ -17,7 +17,10 @@ export default function TimezoneBanner() {
   useEffect(() => {
     const result = checkAndRecordTimezone();
     if (result.changed && result.previous) {
-      setChange({ previous: result.previous, current: result.current });
+      const changeData = { previous: result.previous, current: result.current };
+      queueMicrotask(() => {
+        setChange(changeData);
+      });
     }
   }, []);
 

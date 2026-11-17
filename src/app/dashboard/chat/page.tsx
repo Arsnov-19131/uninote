@@ -4,18 +4,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { useChatStore } from "@/store/chat";
 import { useSubjectStore } from "@/store/subjects";
 import { useNoteStore } from "@/store/notes";
-import {
-  Card,
-  Button,
-  Badge,
-  Input,
-  Select,
-} from "@/components/ui";
+import { Button } from "@/components/ui";
 import { formatTime } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { aiExplain } from "@/lib/ai";
-import type { QuizSourceType, ReadingLevel, ChatRole } from "@/types";
+import type { QuizSourceType, ReadingLevel } from "@/types";
 import {
   MessageSquare,
   Send,
@@ -24,11 +18,8 @@ import {
   FilePlus,
   Trash2,
   Plus,
-  Sliders,
   Check,
   Bookmark,
-  Layers,
-  ArrowRight,
   Bot,
   User,
 } from "lucide-react";
@@ -62,9 +53,7 @@ export default function ChatPage() {
   const [inputPrompt, setInputPrompt] = useState("");
   const [sourceType, setSourceType] = useState<QuizSourceType>("general");
   const [readingLevel, setReadingLevel] = useState<ReadingLevel>("simple");
-  const [selectedSubjectId, setSelectedSubjectId] = useState<string>(
-    subjects[0]?.id || "",
-  );
+  const selectedSubjectId = subjects[0]?.id || "";
   const [selectedNoteId, setSelectedNoteId] = useState<string>(notes[0]?.id || "");
   const [isThinking, setIsThinking] = useState(false);
   const [aiError, setAiError] = useState<string | null>(null);
@@ -81,7 +70,6 @@ export default function ChatPage() {
   }, [messages, isThinking]);
 
   // Current session & messages
-  const activeSession = sessions.find((s) => s.id === activeSessionId);
   const currentMessages = messages
     .filter((m) => m.sessionId === activeSessionId)
     .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
@@ -246,7 +234,6 @@ export default function ChatPage() {
           <div className="flex-1 overflow-y-auto space-y-1 pr-1">
             {sessions.map((sess) => {
               const isActive = sess.id === activeSessionId;
-              const sub = subjects.find((s) => s.id === sess.subjectId);
               return (
                 <div
                   key={sess.id}
@@ -308,7 +295,7 @@ export default function ChatPage() {
                   Ask Anything About Your Syllabus
                 </h3>
                 <p className="text-xs text-ink-faint max-w-xs mt-1">
-                  "Explain photosynthesis like I'm 10" or "Help me derive the quadratic formula step by step".
+                  &ldquo;Explain photosynthesis like I&apos;m 10&rdquo; or &ldquo;Help me derive the quadratic formula step by step&rdquo;.
                 </p>
               </div>
             ) : (

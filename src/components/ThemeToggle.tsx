@@ -24,8 +24,11 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setPref(getStoredThemePreference());
-    setMounted(true);
+    const stored = getStoredThemePreference();
+    queueMicrotask(() => {
+      setPref(stored);
+      setMounted(true);
+    });
   }, []);
 
   useEffect(() => {

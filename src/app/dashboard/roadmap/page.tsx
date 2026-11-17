@@ -13,9 +13,8 @@ import {
   ProgressBar,
   ConfirmDialog,
 } from "@/components/ui";
-import type { SubjectColor, Topic } from "@/types";
+import type { SubjectColor } from "@/types";
 import {
-  Map,
   Plus,
   ChevronDown,
   ChevronRight,
@@ -25,9 +24,6 @@ import {
   Edit2,
   Sparkles,
   BrainCircuit,
-  BookOpen,
-  ArrowRight,
-  Folder,
 } from "lucide-react";
 import Link from "next/link";
 import { aiExtractTopics } from "@/lib/ai";
@@ -38,9 +34,7 @@ export default function RoadmapPage() {
   const updateSubject = useSubjectStore((s) => s.updateSubject);
   const deleteSubject = useSubjectStore((s) => s.deleteSubject);
 
-  const topics = useTopicStore((s) => s.topics);
   const addTopic = useTopicStore((s) => s.addTopic);
-  const updateTopic = useTopicStore((s) => s.updateTopic);
   const deleteTopic = useTopicStore((s) => s.deleteTopic);
   const toggleCovered = useTopicStore((s) => s.toggleCovered);
   const getTopicsBySubject = useTopicStore((s) => s.getTopicsBySubject);
@@ -260,7 +254,7 @@ export default function RoadmapPage() {
                 <div className="p-4 bg-paper/40 space-y-2">
                   {topLevelTopics.length === 0 ? (
                     <div className="py-6 text-center text-xs text-ink-faint">
-                      No topics added yet. Click "+ Topic" or "AI Import Syllabus" to populate this subject.
+                      No topics added yet. Click &ldquo;+ Topic&rdquo; or &ldquo;AI Import Syllabus&rdquo; to populate this subject.
                     </div>
                   ) : (
                     topLevelTopics.map((parent) => {

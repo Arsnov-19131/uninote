@@ -260,7 +260,7 @@ export default function PlannerPage() {
             <Card className="text-center py-12">
               <CalendarIcon className="w-8 h-8 text-ink-faint mx-auto mb-2" />
               <p className="text-sm text-ink-light font-medium">No tasks found</p>
-              <p className="text-xs text-ink-faint mt-0.5">Click "Add Task" to plan your next study block.</p>
+              <p className="text-xs text-ink-faint mt-0.5">Click &ldquo;Add Task&rdquo; to plan your next study block.</p>
             </Card>
           ) : (
             filteredTasks

@@ -13,15 +13,11 @@ import {
   Modal,
   ConfirmDialog,
 } from "@/components/ui";
-import { formatDate } from "@/lib/utils";
 import type { Resource, ResourceKind } from "@/types";
 import {
-  FolderOpen,
   Plus,
   ExternalLink,
   BookOpen,
-  FileText,
-  Upload,
   BrainCircuit,
   MessageSquare,
   Trash2,
@@ -57,17 +53,13 @@ export default function ResourcesPage() {
   const [subjectId, setSubjectId] = useState<string>(subjects[0]?.id || "");
 
   const [deletingId, setDeletingId] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<"library" | "browserFolder">("library");
-  const [pickedFolderName, setPickedFolderName] = useState<string | null>(null);
 
   // File System Access API (Chrome/Edge desktop)
   const handlePickLocalFolder = async () => {
     try {
-      // @ts-ignore
-      if (window.showDirectoryPicker) {
-        // @ts-ignore
-        const dirHandle = await window.showDirectoryPicker();
-        setPickedFolderName(dirHandle.name);
+      const win = window as unknown as { showDirectoryPicker?: () => Promise<{ name: string }> };
+      if (typeof win.showDirectoryPicker === "function") {
+        const dirHandle = await win.showDirectoryPicker();
         // Add a resource entry
         addResource(
           `Local Folder: ${dirHandle.name}`,

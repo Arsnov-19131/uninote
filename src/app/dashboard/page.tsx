@@ -8,7 +8,7 @@ import { useTaskStore } from "@/store/tasks";
 import { useProgressStore } from "@/store/progress";
 import { useQuizStore } from "@/store/quizzes";
 import { Card, Button, Badge, ProgressBar, Modal, Input, Select } from "@/components/ui";
-import { formatDate, daysUntil, truncate } from "@/lib/utils";
+import { formatDate, daysUntil } from "@/lib/utils";
 import { todayKey } from "@/lib/calendar";
 import {
   Calendar,
@@ -54,7 +54,9 @@ export default function DashboardPage() {
   const getTopicScores = useQuizStore((s) => s.getTopicScores);
 
   useEffect(() => {
-    setMounted(true);
+    queueMicrotask(() => {
+      setMounted(true);
+    });
   }, []);
 
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);

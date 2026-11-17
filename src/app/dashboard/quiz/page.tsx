@@ -8,9 +8,7 @@ import { useNoteStore } from "@/store/notes";
 import {
   Card,
   Button,
-  Badge,
   ProgressBar,
-  Input,
   Select,
 } from "@/components/ui";
 import type {
@@ -20,17 +18,10 @@ import type {
 } from "@/types";
 import {
   BrainCircuit,
-  Play,
-  CheckCircle,
-  XCircle,
-  HelpCircle,
-  Clock,
   RotateCcw,
   Sparkles,
   ArrowRight,
   Award,
-  ChevronRight,
-  Check,
   Edit2,
 } from "lucide-react";
 import Link from "next/link";
@@ -63,12 +54,10 @@ export default function QuizPage() {
   const [aiError, setAiError] = useState<string | null>(null);
 
   // Active Quiz State
-  const [activeQuizId, setActiveQuizId] = useState<string>("");
   const [activeAttemptId, setActiveAttemptId] = useState<string>("");
   const [activeQuestions, setActiveQuestions] = useState<QuizQuestion[]>([]);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
-  const [attemptAnswerIds, setAttemptAnswerIds] = useState<Record<string, string>>({});
 
   // Filter topics for selected subject
   const subjectTopics = topics.filter((t) => t.subjectId === selectedSubjectId);
@@ -125,7 +114,6 @@ export default function QuizPage() {
     );
     const attempt = startAttempt(quiz.id);
 
-    setActiveQuizId(quiz.id);
     setActiveAttemptId(attempt.id);
     setActiveQuestions(qs);
     setCurrentQIndex(0);
@@ -170,8 +158,7 @@ export default function QuizPage() {
       feedback = graded.data.feedback;
     }
 
-    const recordedAns = submitAnswer(activeAttemptId, q.id, userAns, score, feedback);
-    setAttemptAnswerIds((prev) => ({ ...prev, [q.id]: recordedAns.id }));
+    submitAnswer(activeAttemptId, q.id, userAns, score, feedback);
 
     if (currentQIndex < activeQuestions.length - 1) {
       setCurrentQIndex(currentQIndex + 1);

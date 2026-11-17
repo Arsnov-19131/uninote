@@ -56,7 +56,10 @@ export default function NotificationsPage() {
 
   // Read the real permission after the page loads (it cannot be read on the server).
   useEffect(() => {
-    setPushStatus(getPermission());
+    const status = getPermission();
+    queueMicrotask(() => {
+      setPushStatus(status);
+    });
   }, []);
 
   const handleRequestPush = async () => {

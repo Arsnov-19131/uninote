@@ -4,10 +4,10 @@
 **Goal (1-2 lines):** Build clean, minimal Zustand stores with persistence and reliable cloud sync across pages and components.  
 **Tech stack:** Next.js (App Router), React, TypeScript, Tailwind CSS, Supabase, Zustand  
 **GitHub repo:** Local repository  
-**Last updated:** 2026-11-09  
+**Last updated:** 2026-11-17  
 
 ## Current State  
-Task 11 complete: code-review fixes applied (sync/reminders, AI route, service worker, auth, settings, cleanup). Not run in a browser or built yet, because the review sandbox had no `node_modules`. Unit tests pass in 4 time zones (`npm test`).
+Task 12.4 complete: converted network status tracking to standard `useSyncExternalStore` and deferred client-only environment mounting via microtasks, eliminating all 7 `react-hooks/set-state-in-effect` errors. `npm run lint` passes with 0 errors and 0 warnings, `tsc --noEmit` passes with 0 errors, and unit tests pass 33/33 (`npm test`). Ready for user testing (Task 12.5).
 
 ## Build Order / Task List  
 - [x] 1. Core Academic Stores (`src/store/subjects.ts`, `src/store/topics.ts`)  
@@ -21,9 +21,14 @@ Task 11 complete: code-review fixes applied (sync/reminders, AI route, service w
 - [x] 9. Cloud Sync Merge List Data Loss Protection (`src/lib/cloud-sync.ts`)  
 - [x] 10. Settings Page Dead Control Pruning (`src/app/dashboard/settings/page.tsx`)  
 - [x] 11. Code-review fixes (all except RLS on unused 001 tables and dropping 001, skipped on purpose)  
+- [x] 12.1 Remove Unnecessary Files & Dead Dependencies (`001_core_tables.sql`, `@supabase/ssr`)  
+- [x] 12.2 Prune Dead Code & Unused Imports / Variables  
+- [x] 12.3 Fix Syntax, Entities & Type Cleanups  
+- [x] 12.4 Resolve React Effect Synchronization Errors  
+- [ ] 12.5 Verification & Validation (User Testing)  
 
 ## Next Task  
-Run `npm install` (refreshes the lockfile after dependency changes), then `npm run build`, `npm run lint`, `npm test`, and click through sign-in, reset password, chat, planner reminders and Settings.
+Task 12.5: Verification & Validation (User Testing — left to user per request).
 
 ## Last Commit  
 not committed yet  

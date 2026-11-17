@@ -14,8 +14,11 @@ export default function CloudAccount() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    setMounted(true);
-    setMessage(localStorage.getItem("ast-cloud-sync-status") ?? "");
+    const initialMsg = localStorage.getItem("ast-cloud-sync-status") ?? "";
+    queueMicrotask(() => {
+      setMounted(true);
+      setMessage(initialMsg);
+    });
     const onSyncStatus = (event: Event) => {
       setMessage((event as CustomEvent<string>).detail);
     };

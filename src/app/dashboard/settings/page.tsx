@@ -19,12 +19,15 @@ export default function SettingsPage() {
   useEffect(() => {
     // Read on the client only — Intl.DateTimeFormat() depends on the
     // visitor's machine, so it must not run during server rendering.
-    setTimezone(getDeviceTimezone());
+    const tz = getDeviceTimezone();
+    queueMicrotask(() => {
+      setTimezone(tz);
+    });
   }, []);
 
   // Export full JSON backup
   const handleExportBackup = () => {
-    const backup: Record<string, any> = {};
+    const backup: Record<string, string | null> = {};
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key && key.startsWith("ast-")) {

@@ -8,10 +8,7 @@ import {
   Button,
   Input,
   Select,
-  Textarea,
-  Modal,
   Badge,
-  ConfirmDialog,
 } from "@/components/ui";
 import { formatDate } from "@/lib/utils";
 import type { Note } from "@/types";
@@ -27,7 +24,6 @@ import {
   MessageSquare,
   Download,
   Upload,
-  Tag,
   Archive,
 } from "lucide-react";
 import Link from "next/link";
@@ -53,7 +49,6 @@ export default function VaultPage() {
   const softDelete = useNoteStore((s) => s.softDelete);
   const restore = useNoteStore((s) => s.restore);
   const permanentDelete = useNoteStore((s) => s.permanentDelete);
-  const emptyTrash = useNoteStore((s) => s.emptyTrash);
 
   const subjects = useSubjectStore((s) => s.subjects);
 
@@ -70,9 +65,6 @@ export default function VaultPage() {
   const [editSubjectId, setEditSubjectId] = useState<string>("");
   const [editTags, setEditTags] = useState("");
   const [editorMode, setEditorMode] = useState<"edit" | "preview">("preview");
-
-  // Deletion modal
-  const [deletingNoteId, setDeletingNoteId] = useState<string | null>(null);
 
   // Create new note
   const handleStartCreate = () => {
@@ -489,7 +481,7 @@ export default function VaultPage() {
             <Card className="p-12 text-center text-ink-faint">
               <FileText className="w-12 h-12 mx-auto mb-3 opacity-40" />
               <p className="text-sm font-semibold text-ink">Select a note to read or edit</p>
-              <p className="text-xs text-ink-faint mt-1">Or click "+ New Note" to create one.</p>
+              <p className="text-xs text-ink-faint mt-1">Or click &ldquo;+ New Note&rdquo; to create one.</p>
             </Card>
           )}
         </div>

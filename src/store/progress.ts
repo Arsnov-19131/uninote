@@ -46,7 +46,7 @@ export const useProgressStore = create<ProgressStore>()(
       getSnapshots: (subjectId) =>
         get()
           .snapshots.filter((s) => s.subjectId === subjectId)
-          .sort((a, b) => new Date(a.calculatedAt).getTime() - new Date(a.calculatedAt).getTime()),
+          .sort((a, b) => new Date(a.calculatedAt).getTime() - new Date(b.calculatedAt).getTime()),
 
       addSuggestion: (data) => {
         const sug: Suggestion = { ...data, id: generateId(), createdAt: now(), updatedAt: now() };

@@ -33,7 +33,7 @@ function safeUrl(value) {
   try {
     const u = new URL(value, self.location.origin);
     if (u.origin === self.location.origin) return u.pathname + u.search + u.hash;
-  } catch (e) {
+  } catch {
     // fall through
   }
   return "/dashboard/notifications";
@@ -125,7 +125,7 @@ self.addEventListener("push", (event) => {
   let payload = {};
   try {
     payload = event.data ? event.data.json() : {};
-  } catch (e) {
+  } catch {
     payload = { body: event.data ? event.data.text() : "" };
   }
   const title = payload.title || "AI Study Toolkit";
@@ -150,7 +150,7 @@ self.addEventListener("notificationclick", (event) => {
       for (const client of windows) {
         try {
           if ("navigate" in client) await client.navigate(url);
-        } catch (e) {
+        } catch {
           // Navigation can be refused; focusing the window is still useful.
         }
         if ("focus" in client) return client.focus();

@@ -14,18 +14,12 @@ import {
 } from "@/components/ui";
 import { daysUntil } from "@/lib/utils";
 import {
-  BarChart3,
   Sparkles,
   AlertTriangle,
-  CheckCircle,
-  Calendar,
-  Clock,
   ArrowRight,
   Check,
   X,
   Target,
-  BrainCircuit,
-  TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -168,13 +162,7 @@ export default function TrackerPage() {
               : coverage;
 
             const daysLeft = sub.examDate ? daysUntil(sub.examDate) : null;
-
-            // Identify weak topics (mastery < 60%)
             const subTopics = topics.filter((t) => t.subjectId === sub.id);
-            const weakTopics = subTopics.filter((t) => {
-              const score = scores[t.id];
-              return score !== undefined && score < 0.6;
-            });
 
             return (
               <Card key={sub.id} highlight={sub.color} className="p-5 bg-surface space-y-4">
